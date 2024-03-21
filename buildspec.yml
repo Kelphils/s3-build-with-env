@@ -1,0 +1,29 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14
+    commands:
+      # Install project dependencies
+      - node -v
+      - npm i
+
+  pre_build:
+    commands:
+      # Run the script before building the app
+      - chmod +x script.sh
+      - ./script.sh
+      - ls
+
+  build:
+    commands:
+      # Build the react app
+      - npm run build
+      - aws s3 sync build/ s3://alarrt-s3-pipeline-bucket
+      - aws cloudfront create-invalidation --distribution-id E31KSPFTAQBKNM --paths /* 
+
+env:
+  variables:
+    AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
