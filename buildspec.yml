@@ -21,7 +21,7 @@ phases:
     commands:
       # Build the react app
       - npm run build
-      - aws s3 sync build/ s3://alarrt-s3-pipeline-bucket
+      - aws s3 sync build s3://alarrt-s3-pipeline-bucket
       - aws cloudfront create-invalidation --distribution-id E31KSPFTAQBKNM --paths /* 
 
 env:

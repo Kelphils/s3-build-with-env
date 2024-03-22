@@ -4,7 +4,7 @@ import EnvContent from "./hello";
 function App() {
   return (
     <div>
-      <h1>Hello World from React App</h1>
+      <h1>Hello World from Alarrt Pipeline</h1>
       <EnvContent />
     </div>
   );
